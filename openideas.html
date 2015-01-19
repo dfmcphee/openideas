@@ -1,0 +1,50 @@
+<head>
+  <title>Open Ideas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
+  <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+  <div class="outer">
+    <div class="logo"><icon class="ion-ios-lightbulb-outline"></icon></div>
+    <h1 class="title">Open Ideas</h1>
+    <div class="subtitle">Connecting developers with open source ideas.</div>
+    {{> create}}
+    {{> leaderboard}}
+  </div>
+</body>
+
+<template name="create">
+  <div class="create">
+    <input id="newIdea" />
+    <button id="addIdea">Add</button>
+  </div>
+</template>
+
+<template name="leaderboard">
+  <ol class="leaderboard">
+    {{#each ideas}}
+      {{> idea}}
+    {{/each}}
+  </ol>
+
+  {{#if selectedIdea}}
+    <div class="details">
+      <button class="inc {{voted}}"><icon class="ion-ios-arrow-thin-up"></icon></button>
+      <button class="dec {{voted}}"><icon class="ion-ios-arrow-thin-down"></icon></button>
+    </div>
+  {{else}}
+    <div class="message">Click an idea to select</div>
+  {{/if}}
+</template>
+
+<template name="idea">
+  <li class="idea {{selected}}">
+    <span class="name">{{name}}</span>
+    <span class="score">{{score}}</span>
+    {{#if owned}}
+      <span class="remove"><icon class="ion-ios-close-outline"></icon></span>
+    {{/if}}
+  </li>
+</template>
