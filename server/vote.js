@@ -1,5 +1,8 @@
 Meteor.startup(function () {
-  voteStream.on('vote', function(vote) {
+  /*
+   * Event for voting on an idea
+   */
+  ideaStream.on('vote', function(vote) {
     // Find idea based on idea id from vote
     idea = Ideas.findOne(vote.idea);
 
@@ -52,6 +55,29 @@ Meteor.startup(function () {
           $set: set
         });
       }
+    }
+  });
+
+  /*
+   * Event for creating a new idea
+   */
+   ideaStream.on('create', function(idea) {
+    if (idea && idea.name.length > 0 && idea.user) {
+      Ideas.insert({
+        name: idea.name,
+        voted: [],
+        score: 0,
+        user: idea.user
+      });
+    }
+  });
+
+  /*
+   * Event for removing a new idea
+   */
+   ideaStream.on('remove', function(idea) {
+    if (idea) {
+      Ideas.remove(idea);
     }
   });
 });

@@ -8,18 +8,13 @@ Template.create.events({
     }
   },
   'click #addIdea': function() {
-    var idea = $('#newIdea').val();
-
-    if (idea && idea.length > 0) {
-      Ideas.insert({
-        name: idea,
-        voted: [],
-        score: 0,
-        user: Meteor.userId()
-      });
-
-      $('#newIdea').val('');
-      $('.create').removeClass('active');
-    }
+    var ideaName = $('#newIdea').val();
+    $('#newIdea').val('');
+    $('.create').removeClass('active');
+    var idea = {
+      name: ideaName,
+      user: Meteor.userId()
+    };
+    ideaStream.emit('create', idea);
   }
 });

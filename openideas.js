@@ -3,4 +3,4 @@
 Ideas = new Mongo.Collection("ideas");
 
 // Add a new stream for sending votes between client and server
-voteStream = new Meteor.Stream('votes');
+ideaStream = new Meteor.Stream('votes');

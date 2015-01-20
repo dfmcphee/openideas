@@ -14,7 +14,7 @@ Template.idea.events({
   },
   'click .remove': function () {
     if (confirm('Are you sure you want to delete this idea?')) {
-      Ideas.remove(this._id);
+      ideaStream.emit('remove', this._id);
     }
   }
 });

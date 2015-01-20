@@ -15,7 +15,7 @@ Template.leaderboard.helpers({
     } else {
       Session.set('voted', '');
     }
-    
+
     return idea && idea.name;
   },
   voted: function () {
@@ -31,7 +31,7 @@ Template.leaderboard.events({
       user: Meteor.userId(),
       score: 1
     };
-    voteStream.emit('vote', vote);
+    ideaStream.emit('vote', vote);
   },
   'click .dec': function () {
     Session.set('voted', 'down');
@@ -40,6 +40,6 @@ Template.leaderboard.events({
       user: Meteor.userId(),
       score: -1
     };
-    voteStream.emit('vote', vote);
+    ideaStream.emit('vote', vote);
   }
 });
