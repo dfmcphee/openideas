@@ -28,15 +28,6 @@
       {{> idea}}
     {{/each}}
   </ol>
-
-  {{#if selectedIdea}}
-    <div class="details">
-      <button class="inc {{voted}}"><icon class="ion-ios-arrow-thin-up"></icon></button>
-      <button class="dec {{voted}}"><icon class="ion-ios-arrow-thin-down"></icon></button>
-    </div>
-  {{else}}
-    <div class="message">Click an idea to select</div>
-  {{/if}}
 </template>
 
 <template name="idea">
@@ -45,6 +36,12 @@
     <span class="score">{{score}}</span>
     {{#if owned}}
       <span class="remove"><icon class="ion-ios-close-outline"></icon></span>
+    {{/if}}
+    {{#if selectedIdea}}
+    <div class="details">
+      <button class="inc {{voted}}"><icon class="ion-ios-arrow-thin-up"></icon></button>
+      <button class="dec {{voted}}"><icon class="ion-ios-arrow-thin-down"></icon></button>
+    </div>
     {{/if}}
   </li>
 </template>
